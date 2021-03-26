@@ -10,17 +10,20 @@
 <body>
   <header class="container mt-3">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="#">TINYSTEPS</a>
+      <a class="navbar-brand" href="/">TINYSTEPS</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item active">
-            <a class="nav-link" href="#">Все репетиторы</a>
+            <a class="nav-link" href="/all/">Все репетиторы</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Заявка на подбор</a>
+            <a class="nav-link" href="/request/">Заявка на подбор</a>
+          </li>
+            <li class="nav-item">
+            <a class="nav-link" href="/lessons/">Все уроки</a>
           </li>
         </ul>
       </div>
@@ -32,12 +35,14 @@
   <main class="container mt-3">
     <div class="row mt-5">
       <div class="col-10 col-md-6 offset-1 offset-md-3 mb-3">
-        <form action="booking_done.html" class="card mb-3">
+
+
+        <form action="/booking/{{ id }}/{{ name }}/{{ time }}/{{ day }}/" method = "POST" class="card mb-3">
           <div class="card-body text-center pt-5">
-            <img src="../static/pict 1.png" class="mb-3" width="95" alt="">
-            <h2 class="h5 card-title mt-2 mb-2">Morris Simmmons</h2>
+            <img src="#" class="mb-3" width="95" alt="">
+            <h2 class="h5 card-title mt-2 mb-2">{{ name }}</h2>
             <p class="my-1">Запись на пробный урок</p>
-            <p class="my-1">Вторник, 12:00</p>
+            <p class="my-1">{{ day }}, {{ time }}</p>
           </div>
           <hr />
           <div class="card-body mx-3">
@@ -48,10 +53,10 @@
               </div>
 
             <label class="mb-1 mt-2" for="clientName">Вас зовут</label>
-            <input class="form-control" type="text" name="clientName" id="clientName">
+            <input class="form-control" type="text" name="clientName" id="clientName" required>
 
             <label class="mb-1 mt-2" for="clientPhone">Ваш телефон</label>
-            <input class="form-control" type="tel"  name="clientPhone" id="clientPhone">
+            <input class="form-control" type="tel"  name="clientPhone" id="clientPhone" required>
 
             <input type="submit" class="btn btn-primary btn-block mt-4" value="Записаться на пробный урок">
 
