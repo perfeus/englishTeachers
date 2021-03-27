@@ -16,13 +16,13 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
-          <li class="nav-item active">
+          <li class="nav-item       ">
             <a class="nav-link" href="/all/">Все репетиторы</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/request/">Заявка на подбор</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item active">
             <a class="nav-link" href="/lessons/">Все уроки</a>
           </li>
         </ul>
@@ -33,21 +33,19 @@
     </nav>
   </header>
   <main class="container mt-3">
-    <h1 class="h1 text-center w-50 mx-auto mt-1 py-5 mb-4"><strong>Все преподаватели</strong></h1>
+    <h1 class="h1 text-center w-50 mx-auto mt-1 py-5 mb-4"><strong>Все уроки</strong></h1>
 
       <div class="row">
       <div class="col-12 col-lg-10 offset-lg-1 m-auto">
         <div class="card mb-4">
           <div class="card-body align-right">
-            <p class="lead float-left d-inline-block mt-2 mb-0"><strong> {{ data|length }} преподавателей в базе</strong></p>
+            <p class="lead float-left d-inline-block mt-2 mb-0"><strong> {{ data|length }} уроков в базе</strong></p>
 
-            <form class="float-right d-inline-block" method="POST" action="/all/sorted/">
+            <form class="float-right d-inline-block" method="POST" action="/lessons/">
               <div class="form-inline">
-                <select class="custom-select my-1 mr-2" id="inlineFormCustomSelectPref" name="myvalue">
-                  <option value="4" selected>В случайном порядке</option>
-                  <option value="3">Сначала лучшие по рейтингу</option>
-                  <option value="1">Сначала дорогие</option>
-                  <option value="2">Сначала недорогие</option>
+                <select class="custom-select my-1 mr-2" id="inlineFormCustomSelectPref" name="myValue">
+                  <option value="1" selected>Сначала старые</option>
+                  <option value="2">Сначала новые</option>
                 </select>
                 <button type="submit" class="btn btn-primary my-1">Сортировать</button>
               </div>
@@ -55,21 +53,30 @@
           </div>
         </div>
 
-        {% for item in data %}
-        <div class="card mb-4">
-          <div class="card-body">
-            <div class="row">
-              <div class="col-3"><img src="#" class="img-fluid" alt=""></div>
-              <div class="col-9">
-                <p class="float-right">Рейтинг: {{ item.rating }} Ставка: {{ item.price }} / час</p>
-                <h2 class="h4">{{ item.name }}</h2>
-                <p>{{ item.about }}</p>
-                <a href="/profile/{{ item.id }}/" class="btn btn-outline-primary btn-sm mr-3 mb-2">Показать информаци и расписание</a>
-              </div>
-            </div>
-          </div>
-        </div>
-        {% endfor %}
+        <table class="table table-sm">
+          <thead>
+            <tr class="bg-primary text-white">
+              <th scope="col">#</th>
+              <th scope="col">Имя учителя</th>
+              <th scope="col">День недели</th>
+              <th scope="col">Время начала урока</th>
+              <th scope="col">Имя студента</th>
+              <th scope="col">Телефон студента</th>
+            </tr>
+          </thead>
+            <tbody>
+            {% for item in data %}
+              <tr>
+                <th scope="row">{{ item.id }}</th>
+                <td>{{ item.teacherName}}</td>
+                <td>{{ item.day }}</td>
+                <td>{{ item.time }}</td>
+                <td>{{ item.clientName }}</td>
+                <td>{{ item.clientPhone }}</td>
+              </tr>
+            {% endfor %}
+            </tbody>
+          </table>
 
       </div>
     </div>

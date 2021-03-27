@@ -151,9 +151,28 @@ def bookingAction(teacherId, teacherName, time, day):
     return render_template("booking.html", id=teacherId, name=teacherName, time=time, day=day)
 
 
-@app.route("/lessons/")
+@app.route("/lessons/", methods=["POST", "GET"])
 def lessonsRender():
-    return render_template("lessons.html")
+    lessons = db.session.query(Lesson).all()
+    data = list()
+    for item in lessons:
+        data.append(dict([("id", item.id),
+                          ("teacherName", item.teacher.name),
+                          ("day", item.day),
+                          ("time", item.time),
+                          ("clientName", item.clientName),
+                          ("clientPhone", item.clientPhone)
+                          ]))
+    if request.method == "POST":
+        sortValue = request.form.get("myValue")
+        if sortValue == "1":
+            data.sort(key=itemgetter("id"), reverse=False)
+            return render_template("lessons.html", data=data)
+        if sortValue == "2":
+            data.sort(key=itemgetter("id"), reverse=True)
+            return render_template("lessons.html", data=data)
+
+    return render_template("lessons.html", data=data)
 
 
 if __name__ == "__main__":
