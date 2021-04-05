@@ -53,7 +53,7 @@
 
               <h6 class="mt-4">Понедельник</h6>
               {% set day = "Понедельник" %}
-              {% for time, avail in data.schedule.mon.items() %}
+              {% for time, avail in schedule.mon.items() %}
                 {% if avail == True %}
                 <a href="/booking/{{ data.id }}/{{ data.name }}/{{ time }}/{{ day }}/" class="btn btn-outline-success mr-2 my-1">{{ time }} свободно</a>
                 {% endif %}
@@ -61,7 +61,7 @@
 
               <h6 class="mt-4">Вторник</h6>
               {% set day = "Вторник" %}
-              {% for time, avail in data.schedule.tue.items() %}
+              {% for time, avail in schedule.tue.items() %}
                 {% if avail == True %}
                 <a href="/booking/{{ data.id }}/{{ data.name }}/{{ time }}/{{ day }}/" class="btn btn-outline-success mr-2 my-1">{{ time }} свободно</a>
                 {% endif %}
@@ -70,7 +70,7 @@
 
               <h6 class="mt-4">Среда</h6>
               {% set day = "Среда" %}
-              {% for time, avail in data.schedule.wed.items() %}
+              {% for time, avail in schedule.wed.items() %}
                 {% if avail == True %}
                 <a href="/booking/{{ data.id }}/{{ data.name }}/{{ time }}/{{ day }}/" class="btn btn-outline-success mr-2 my-1">{{ time }} свободно</a>
                 {% endif %}
@@ -78,7 +78,7 @@
 
               <h6 class="mt-4">Четверг</h6>
               {% set day = "Четверг" %}
-              {% for time, avail in data.schedule.thu.items() %}
+              {% for time, avail in schedule.thu.items() %}
                 {% if avail == True %}
                 <a href="/booking/{{ data.id }}/{{ data.name }}/{{ time }}/{{ day }}/" class="btn btn-outline-success mr-2 my-1">{{ time }} свободно</a>
                 {% endif %}
@@ -86,7 +86,7 @@
 
               <h6 class="mt-4">Пятница</h6>
               {% set day = "Пятница" %}
-              {% for time, avail in data.schedule.fri.items() %}
+              {% for time, avail in schedule.fri.items() %}
                 {% if avail == True %}
                 <a href="/booking/{{ data.id }}/{{ data.name }}/{{ time }}/{{ day }}/" class="btn btn-outline-success mr-2 my-1">{{ time }} свободно</a>
                 {% endif %}
@@ -94,7 +94,7 @@
 
               <h6 class="mt-4">Cуббота</h6>
               {% set day = "Суббота" %}
-              {% for time, avail in data.schedule.sat.items() %}
+              {% for time, avail in schedule.sat.items() %}
                 {% if avail == True %}
                 <a href="/booking/{{ data.id }}/{{ data.name }}/{{ time }}/{{ day }}/" class="btn btn-outline-success mr-2 my-1">{{ time }} свободно</a>
                 {% endif %}
@@ -102,14 +102,12 @@
 
               <h6 class="mt-4">Воскресенье</h6>
               {% set day = "Воскресенье" %}
-              {% for time, avail in data.schedule.sun.items() %}
+              {% for time, avail in schedule.sun.items() %}
                 {% if avail == True %}
                 <a href="/booking/{{ data.id }}/{{ data.name }}/{{ time }}/{{ day }}/" class="btn btn-outline-success mr-2 my-1">{{ time }} свободно</a>
                 {% endif %}
               {% endfor %}
-
             </section>
-
           </div>
         </article>
       </div>

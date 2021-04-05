@@ -1,4 +1,5 @@
 import os
+import json
 from operator import itemgetter
 from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
@@ -64,7 +65,6 @@ class Lesson(db.Model):
 @app.route("/all/", methods=["GET", "POST"])
 def index():
     tchs = db.session.query(Teacher).all()
-    gls = db.session.query(Goal).all()
     return render_template("all.html", data=tchs)
 
 
@@ -95,7 +95,8 @@ def allValue():
 @app.route("/profile/<int:id>/")
 def profiles(id):
     teacher = db.session.query(Teacher).get(id)
-    return render_template("profile.html", data=teacher)
+    schedule = json.loads(teacher.schedule)
+    return render_template("profile.html", data=teacher, schedule=schedule)
 
 
 @app.route("/request/", methods=["GET", "POST"])
@@ -176,4 +177,5 @@ def lessonsRender():
 
 
 if __name__ == "__main__":
+    app.debug = True
     app.run()
